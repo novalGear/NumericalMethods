@@ -143,7 +143,8 @@ sixth curve.
 
 If an error is exactly zero in `float64`, the zero remains in the numerical
 data but is omitted from the logarithmic plot. It must not be replaced with an
-arbitrary positive value.
+arbitrary positive value. When this occurs, the figure contains the number of
+omitted points and the command logs the same count for that function.
 
 Plots are written to `Differentiation/plots/` with the following filenames:
 

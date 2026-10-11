@@ -45,6 +45,7 @@ differentiator.add_sample(
 def main() -> None:
     from .plotting import save_error_plots
 
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
     results = differentiator.run_all(x=1.0)
     for output_path in save_error_plots(results):
         print(output_path)

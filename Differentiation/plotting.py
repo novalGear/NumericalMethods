@@ -1,4 +1,6 @@
 from collections.abc import Sequence
+import logging
+import math
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -7,6 +9,7 @@ from .diff_engine import DifferentiationResult
 
 
 DEFAULT_PLOT_DIR = Path(__file__).resolve().parent / "plots"
+logger = logging.getLogger(__name__)
 
 
 def save_error_plots(
@@ -45,6 +48,14 @@ def save_error_plots(
         try:
             for method_name, method_results in results_by_method.items():
                 ordered_results = sorted(method_results, key=lambda result: result.h)
+                if any(
+                    not math.isfinite(result.abs_error)
+                    for result in ordered_results
+                ):
+                    raise ValueError(
+                        f"method [{method_name}] for function [{function_name}] "
+                        "contains a non-finite error"
+                    )
                 positive_results = [
                     result for result in ordered_results if result.abs_error > 0.0
                 ]
@@ -68,6 +79,11 @@ def save_error_plots(
             axis.legend()
 
             if omitted_zero_count:
+                logger.info(
+                    "Omitted %d zero-error points from log plot for [%s]",
+                    omitted_zero_count,
+                    function_name,
+                )
                 axis.text(
                     0.01,
                     0.01,
