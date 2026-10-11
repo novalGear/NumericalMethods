@@ -40,3 +40,15 @@ differentiator.add_sample(
     lambda x: math.sqrt(x + 3),
     lambda x: 1 / (2 * math.sqrt(x + 3)),
 )
+
+
+def main() -> None:
+    from .plotting import save_error_plots
+
+    results = differentiator.run_all(x=1.0)
+    for output_path in save_error_plots(results):
+        print(output_path)
+
+
+if __name__ == "__main__":
+    main()

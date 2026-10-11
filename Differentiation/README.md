@@ -145,6 +145,46 @@ If an error is exactly zero in `float64`, the zero remains in the numerical
 data but is omitted from the logarithmic plot. It must not be replaced with an
 arbitrary positive value.
 
+Plots are written to `Differentiation/plots/` with the following filenames:
+
+```text
+diff_f01.png  diff_f01.pdf
+diff_f02.png  diff_f02.pdf
+diff_f03.png  diff_f03.pdf
+diff_f04.png  diff_f04.pdf
+diff_f05.png  diff_f05.pdf
+```
+
+## Sources and Launch
+
+The differentiation implementation is divided by responsibility:
+
+- `diff_methods.py` contains the five pure finite-difference calculations;
+- `diff_engine.py` configures and executes every function, method, and step
+  combination and returns immutable result records;
+- `main.py` declares the function samples and analytical derivatives and is the
+  command-line entry point;
+- `plotting.py` groups result records and saves the five required error plots;
+- `requirements.txt` declares the plotting dependency.
+
+From the repository root, create an isolated environment and install the
+dependency with:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r Differentiation/requirements.txt
+```
+
+Run the complete differentiation and plotting experiment with:
+
+```bash
+.venv/bin/python -m Differentiation.main
+```
+
+The command evaluates all five functions with all five methods for the default
+inclusive range $n=1,\ldots,21$, prints the generated paths, and saves plots in
+`Differentiation/plots/`.
+
 ## Observed Order
 
 The observed convergence order can be estimated from adjacent steps by
@@ -196,7 +236,7 @@ should be referenced from:
 
 - `results/lab1/diff_errors.csv`;
 - `results/lab1/diff_summary.csv`;
-- `results/lab1/diff_f01.png` through `diff_f05.png`;
+- `Differentiation/plots/diff_f01.png` through `diff_f05.png`;
 - the corresponding PDF figures.
 
 | Function | Method | Theoretical order | Observed order | Best tested $h$ | Minimum absolute error |
