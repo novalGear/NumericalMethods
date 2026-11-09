@@ -1,8 +1,9 @@
 numerical_methods_python_assignment.md
 Differentiation/__pycache__
-Differentiation/plots
+Differentiation/plots/*.pdf
 
-LinearSystems/results
+LinearSystems/results/*
+!LinearSystems/results/*.png
 
 .venv/
 __pycache__/
