@@ -6,4 +6,5 @@ LinearSystems/results
 
 .venv/
 __pycache__/
+tests/
 heat_equation_opencode_task.md
