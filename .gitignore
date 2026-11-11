@@ -1,9 +1,17 @@
 numerical_methods_python_assignment.md
 Differentiation/__pycache__
-Differentiation/plots
+Differentiation/plots/*.pdf
 
-LinearSystems/results
+LinearSystems/results/*
+!LinearSystems/results/*.png
+
+HeatEquation/results/*
+!HeatEquation/results/*.png
 
 .venv/
 __pycache__/
+tests/__pycache__/
 heat_equation_opencode_task.md
+thermal_convergence_plots.md
+
+tests/*
